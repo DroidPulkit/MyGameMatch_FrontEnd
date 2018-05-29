@@ -1,0 +1,3 @@
+creation of template to everybody use the same
+set as github maanager
+Starting the project using materialize
