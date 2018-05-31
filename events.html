@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link href="css/index.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/agenda.css" type="text/css" rel="stylesheet">
+  <link href='css/plugins/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
+  <link href='css/plugins/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+  <link href='https://bootswatch.com/4/sketchy/bootstrap.min.css' rel="stylesheet" >
+
+  <script src='js/lib/moment.min.js'></script>
+  <script src='js/lib/jquery.min.js'></script>
+  <script src='js/lib/fullcalendar.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src='js/events.js'></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="fontnavsize" onclick="openNav()">Menu</a>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="index.html">Home</a>
+      <a href="#">My Account</a>
+      <a href="#">News</a>
+      <a href="agenda.html">My Agenda</a>
+    </div>
+  </nav>
+  <h1 class="text-center">Events</h1>
+  <!--<br>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.html">Home</a>
+    <a href="#">My Account</a>
+    <a href="#">News</a>
+    <a href="agenda.html">My agenda</a>
+  </div>
+
+  <!- Use any element to open the sidenav ->
+  <span class="fontnavsize" onclick="openNav()">My Game Match</span>-->
+
+  <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+  <div id="main">
+    <div id='calendar-events'></div>
+  </div>
+
+</body>
+</html>
