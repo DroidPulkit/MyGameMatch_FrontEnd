@@ -1,77 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Game Match</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Login page">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="css/bootstrap4/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/login.css">
 
-  <title>Login-MyGameMatch</title>
-
-  <link href="css/index.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>  -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="shortcut icon" href="images/favicon2.png" type="image/x-icon">
+<link rel="icon" href="images/favicon2.png" type="image/x-icon">
 </head>
-
 <body>
-    <div class="container">
-      <div class="row">
-			  <div class="col-md-5 mx-auto">
-				    <div class="myform form ">
-              <div class="logo mb-3">
-						    <div class="col-md-12 text-center">
-							    <h1>Login</h1>
-						    </div>
-              </div>
 
-              <form action="" method="post" name="login" onSubmit="return loginValidation(event)">
+<div class="super_container">
 
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Email or Username:</label>
-                  <input type="text" name="email"  class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter email or Username">
+    <!-- Header -->
+
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                        <div class="logo"><a href="index.html">My Game Match</a></div>
+                        <nav class="main_nav">
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li class="active"><a href="login.html">Login</a></li>
+                                <li><a href="signup.html">Signup</a></li>
+                            </ul>
+                        </nav>
+                        <div class="hamburger ml-auto menu_mm">
+                            <i class="fa fa-bars trans_200 menu_mm" aria-hidden="true"></i>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Password</label>
-                  <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
-                </div>
-
-                <div class="form-group">
-                  <p class="text-center">By Loging in you accept our <a href="#">Terms of Use</a></p>
-                </div>
-
-                <div class="col-md-12 text-center ">
-                  <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
-                </div>
-
-                <div class="col-md-12 ">
-                  <div class="login-or">
-                    <hr class="hr-or">
-                      <span class="span-or">or</span>
-                  </div>
-                </div>
-
-                <div class="col-md-12 mb-3">
-                  <p class="text-center">
-                    <a href="https://accounts.google.com/ServiceLogin/identifier?flowEntry=ServiceLogin&hl=en&flowName=GlifWebSignIn" style="text-transform:none">
-                      <img width="20px" alt="Google &quot;G&quot; Logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/> Login with Google
-                    </a>
-                </div>
-
-                <div class="form-group">
-                  <p class="text-center">Don't have account? <a href="Register.html" id="signup">Sign up here</a></p>
-                </div>
-              </form>
-
-				    </div>
+            </div>
         </div>
-      </div>
+    </header>
 
-      <script src="js/login.js"></script>
+    <!-- Menu -->
 
+    <div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
+        <div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
+        <div class="logo menu_mm"><a href="#">My Game Match</a></div>
+        <nav class="menu_nav">
+            <ul class="menu_mm">
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="login.html">Login</a></li>
+                <li><a href="signup.html">Signup</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="home">
+        <div class="home_slider_background" style="background-image:url(images/home_slider.jpg)"></div>
+        <div class="home_slider_content_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 mx-auto">
+                        <div class="myform form ">
+                            <div class="logo mb-3">
+                                <div class="col-md-12 text-center">
+                                    <h1 class="text-light">Login</h1>
+                                </div>
+                            </div>
+
+                            <form action="" method="post" name="login" onSubmit="return loginValidation(event)">
+
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1" class="text-light">Email or Username:</label>
+                                  <input type="text" name="email"  class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter email or Username">
+                                </div>
+
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1" class="text-light">Password</label>
+                                  <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
+                                </div>
+
+                                <div class="form-group">
+                                  <p class="text-center text-light">By Logging in you accept our <a href="#" class="text-light font-weight-bold">Terms of Use</a></p>
+                                </div>
+
+                                <div class="col-md-12 text-center ">
+                                  <button type="button" class=" btn btn-block mybtn btn-primary tx-tfm" id = "loginBtn">Login</button>
+                                </div>
+
+                                <div class="col-md-12 ">
+                                  <div class="login-or text-center">
+                                    <hr class="hr-or">
+                                      <span class="span-or text-light">OR</span>
+                                  </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                  <p class="text-center text-light">Don't have account? <a href="signup.html" id="signup" class="text-light font-weight-bold">Sign up here</a></p>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/lib/jquery.min.js"></script>
+<script src="css/bootstrap4/popper.js"></script>
+<script src="css/bootstrap4/bootstrap.min.js"></script>
+<script src="js/login.js"></script>
+<script src="js/database.js"></script>
 </body>
 </html>

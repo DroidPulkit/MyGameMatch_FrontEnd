@@ -1,114 +1,10 @@
+var dataEventsJSON = []; //ARRAY EVENTS
+var dataUsersJSON = []; //ARRAY USERS + EVENTS ATTENDING
+var userStorage = window.localStorage.getItem("currentUser");//"pulkit@gmail.com"; //USER LOGGED IN
+var data = JSON.parse(localStorage.getItem("database")); //DATABASE
+
 $(document).ready(function() {
-  $('#calendar-events').fullCalendar({
-    header: {
-                   left: '',
-                   center: 'title',
-                   right: 'prev,next'
-               },
-    defaultView: 'listMonth',
-    defaultDate: formatDate(),
-    editable: true, // Don't allow editing of events
-    eventLimit: true,
-    displayEventTime: true,// Display event time
-    events: function(start, end, timezone, callback ) {
-            var test = "{title: 'This is a Material Design event!',start: '2018-05-20T08:30:00',end: '2018-05-20T08:30:00',color: '#C2185B'},{title: 'This is a Material Design event!',start: '2018-05-20T08:30:00',end: '2018-05-20T08:30:00',color: '#C2185B'},{title: 'This is a Material Design event!',start: '2018-05-20T08:30:00',end: '2018-05-20T08:30:00',color: '#C2185B'},{title: 'This is a Material Design event!',start: '2018-05-20T08:30:00',end: '2018-05-20T08:30:00',color: '#C2185B'}";
-            var events =[
-               {
-                    title  : 'event1',
-                    start  : '2018-05-18T08:30:00',
-                    end    : '2018-05-19T12:30:00',
-                },
-                {
-                    title  : 'event2',
-                    start  : '2018-05-19T08:30:00',
-                    end    : '2018-05-19T09:30:00',
-                },
-                {
-                    title  : 'event3',
-                    start  : '2018-05-20T10:30:00',
-                    allDay : false // will make the time show
-                }];
-                events.push({
-                  title: 'This is a Material Design event!',
-                  start: '2018-05-20T08:30:00',
-                  end  : '2018-05-20T08:30:00',
-                  color: '#C2185B'});
-                callback(events);
-        }
-     });
-
-  /*$('#calendar').fullCalendar({
-      defaultDate: formatDate(),//'2018-05-12',
-      editable: true,
-      eventLimit: true,
-      events: [
-        {
-          title: 'All Day Event',
-          start: '2018-05-01'
-        },
-        {
-          title: 'Long Event',
-          start: '2018-05-07',
-          end: '2018-05-10'
-        },
-        {
-          id: 999,
-          title: 'Repeating Event',
-          start: '2018-05-09T16:00:00'
-        },
-        {
-          id: 999,
-          title: 'Repeating Event',
-          start: '2018-05-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2018-05-11',
-          end: '2018-05-13'
-        },
-        {
-          title: 'Meeting',
-          start: '2018-05-12T10:30:00',
-          end: '2018-05-12T12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2018-05-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2018-05-12T14:30:00'
-        },
-        {
-          title: 'Happy Hour',
-          start: '2018-05-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2018-05-12T20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2018-05-13T07:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2018-05-28'
-        }
-      ]
-  });*/
-
-  /*$.getJSON( "json/events.json", function( json ) {
-    console.log( json );
-  });
-  $(function() {
-    var eventsa = JSON.parse( events);
-    eventsa.forEach(function(item) {
-        console.log(item.title);
-    });
-  })*/
-
+  $('#calendar-events').fullCalendar(funcCalendarEvents());
 });
 
 function formatDate() {
@@ -128,4 +24,94 @@ function openNav() {
 /* Set the width of the side navigation to 0 */
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
+}
+
+function loadEvents(){
+  /*dataEventsJSON = JSON.parse(window.localStorage.getItem("dataEventsJSON"));
+  if (!dataEventsJSON){
+    window.localStorage.setItem("dataEventsJSON", JSON.stringify(data.events));
+    dataEventsJSON = JSON.parse(window.localStorage.getItem("dataEventsJSON"));
+  }
+
+  dataUsersJSON = JSON.parse(window.localStorage.getItem("dataUsersJSON"));
+  if (!dataUsersJSON){
+    window.localStorage.setItem("dataUsersJSON", JSON.stringify(data.users));
+    dataUsersJSON = JSON.parse(window.localStorage.getItem("dataUsersJSON"));
+  }*/
+
+  dataEventsJSON = data.events;
+  dataUsersJSON = data.users;
+
+  /*UPDATE COLOR THAT IS HARD CODE*/
+  /*for (var i = 0; i < dataEventsJSON.length; i++){
+    for (var j = 0; j < dataUsersJSON[userStorage].events.length; j++){
+      if (dataEventsJSON[i].id == dataUsersJSON[userStorage].events[j]) {
+        dataEventsJSON[i]['backgroundColor']= "yellow";
+        break;
+      }
+    }
+  }*/
+  for (var i = 0; i < dataEventsJSON.length; i++){
+    dataEventsJSON[i]['backgroundColor']= "#578cba";
+  }
+
+  for (var i = 0; i < dataEventsJSON.length; i++){
+    for (var j = 0; j < dataUsersJSON[userStorage].events.length; j++){
+      if (dataEventsJSON[i].id == dataUsersJSON[userStorage].events[j]) {
+        dataEventsJSON[i]['backgroundColor']= "yellow";
+        break;
+      }
+    }
+  }
+
+  return dataEventsJSON;
+}
+
+function funcCalendarEvents(){
+  return {
+    header: {
+                   left: '',
+                   center: 'title',
+                   right: 'prev,next'
+               },
+    defaultView: 'listMonth',
+    defaultDate: formatDate(),
+    theme: false,
+    editable: true, // Don't allow editing of events
+    eventLimit: true,
+    displayEventTime: true,// Display event time
+    events: loadEvents(),
+    eventClick: function(calEvent, jsEvent, view){
+      var result=confirm("Attend " + calEvent.title + "?");
+      if (result == true){
+        var attended = false;
+        var userAgenda = dataUsersJSON[userStorage].events;
+          for (att in userAgenda) {
+            if (calEvent.id == userAgenda[att]){
+              attended = true;
+              break;
+            }
+          }
+
+          if (!attended){
+            dataUsersJSON[userStorage].events.push(calEvent.id);
+            alert("Event " + calEvent.title + " added with success!");
+            dataEventsJSON[calEvent.id-1]['backgroundColor']= "yellow";
+            $('#calendar-events').fullCalendar('removeEventSources');
+            $('#calendar-events').fullCalendar('addEventSource', dataEventsJSON );
+            $('#calendar-events').fullCalendar('rerenderEvents');
+
+          }else{
+            alert("You are already attending this event!");
+          }
+      }
+    }
+  }
+}
+
+function refreshJSON(){
+  data.events = (dataEventsJSON);
+  data.users = (dataUsersJSON);
+  window.localStorage.setItem("database", JSON.stringify(data));
+
 }

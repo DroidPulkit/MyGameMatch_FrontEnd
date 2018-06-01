@@ -1,23 +1,71 @@
 
-function loginValidation(event){
-  var uname = document.getElementById('username').value;
-  var pass = document.getElementById('password').value;
+$("#loginBtn").on("click", function(){
+  var uname = $("#username").val();
+  var pass = $("#password").val();
 
-  var email = localStorage.getItem('email');
-  var username = localStorage.getItem('username');
-  var password = localStorage.getItem('password');
+  var data = localStorage.getItem("database");
 
-  console.log(uname);
-  console.log(pass);
-  console.log(email);
-  console.log(password);
-  console.log(username);
+  if (data != undefined || data != null) {
+    console.log("Getting database from localStorage");
+    database = JSON.parse(data);
+    var db_uname = database["users"][uname];
+    if (db_uname != undefined || db_uname != null ) {
+      if (database["users"][uname]["password"] == pass) {
+        console.log("username and password match");
+        if (database["users"][uname]["isFirstTimeLogin"]) {
+          console.log("First time login");
+          database["users"][uname]["isFirstTimeLogin"] = false;
+          localStorage.setItem("database", JSON.stringify(database));
+          
+          localStorage.setItem("currentUser", uname);
 
-  if((uname == email || uname == username) && (pass == password)){
-    alert("login successfull");
-    return true;
-  }else{
-    alert('Invalid username or password. Please try again');
-    event.preventDefault(event);
+          window.location.assign("sports_selection.html");
+        } else {
+          console.log("User is not logging first time");
+          
+          localStorage.setItem("currentUser", uname);
+
+          window.location.assign("home.html");
+        }
+      } else {
+        alert("Wrong username or password");
+        console.log("wrong username or pass");
+      }
+    } else {
+      alert("No matching username found");
+      console.log("No matching username found");
+    }
+  } else 
+  {
+    //Data is new so use database.js
+    var db_uname = database["users"][uname];
+    if (db_uname != undefined || db_uname != null ) {
+      if (database["users"][uname]["password"] == pass) {
+        console.log("username and password match");
+        if (database["users"][uname]["isFirstTimeLogin"]) {
+          console.log("First time login");
+          database["users"][uname]["isFirstTimeLogin"] = false;
+          localStorage.setItem("database", JSON.stringify(database));
+
+          localStorage.setItem("currentUser", uname);
+
+          window.location.assign("sports_selection.html");
+          
+        } else {
+          console.log("User is not logging first time");
+
+          localStorage.setItem("currentUser", uname);
+          
+          window.location.assign("home.html");
+          
+        }
+      } else {
+        alert("Wrong username or password");
+        console.log("wrong username or pass");
+      }
+    } else {
+      alert("No matching username found");
+      console.log("No matching username found");
+    }
   }
-}
+});

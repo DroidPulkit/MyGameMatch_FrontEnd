@@ -26,8 +26,8 @@ ul.thumbnails.image_picker_selector {
       -ms-user-select: none; }
       ul.thumbnails.image_picker_selector li .thumbnail img {
 
-        max-width: 250px;
-        max-height: : 250px;
+        max-width: 320px;
+        max-height: : 180px ;
         -webkit-user-drag: none; }
     ul.thumbnails.image_picker_selector li .thumbnail.selected {
       background: #0088cc; }
