@@ -57,8 +57,12 @@ $("#register").on("click", function(){
             "Baseball" : false,
             "Ice Hockey" : false,
             "events" : []
-        }
-        database["users"][email] = userData;
+
+      };
+        database.users[email] = userData;
+        //database.users.push(email);
+        //database.users.email.push(userData);
+        //database["users"][email] = userData;
         localStorage.setItem("database", JSON.stringify(database));
         alert("Sign Up Successfull!!");
     }
