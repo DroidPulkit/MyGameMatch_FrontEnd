@@ -1,5 +1,10 @@
 $("#register").on("click", function(){
 
+    var databaseLocal = JSON.parse(localStorage.getItem('database'));
+    if(!databaseLocal){
+      databaseLocal = database;
+    }
+
     var fname = $("#firstname").val();
     var lname = $("#lastname").val();
     var email = $("#email").val();
@@ -43,12 +48,12 @@ $("#register").on("click", function(){
             "events" : []
 
       };
-        database.users[email] = userData;
-        //database.users.push(email);
-        //database.users.email.push(userData);
-        //database["users"][email] = userData;
-        localStorage.setItem("database", JSON.stringify(database));
-        alert("Sign Up Successfull!!");
+      databaseLocal.users[email] = userData;
+      //database.users.push(email);
+      //database.users.email.push(userData);
+      //database["users"][email] = userData;
+      localStorage.setItem("database", JSON.stringify(databaseLocal));
+      alert("Sign Up Successfull!!");
     }
 
 
