@@ -12,6 +12,13 @@ $("#register").on("click", function(){
     var pass1 = $("#pass1").val();
     var pass2 = $("#pass2").val();
 
+    console.log(fname);
+    console.log(lname);
+    console.log(email);
+    console.log(phone);
+    console.log(pass1);
+    console.log(pass2);
+
     var isDataGood = true;
 
     if (!checkPassword()) {
@@ -83,7 +90,7 @@ function validatephone()
 
     phone.val(phone.val().replace(/[\\A-Za-z!"£$%^&\,*+_={};:'@#~,.Š\/<>?|`¬\]\[]/g, ''));
 
-    if (phone.length == 10) {
+    if (numval.length == 10) {
       return true;
     } else {
       return false;

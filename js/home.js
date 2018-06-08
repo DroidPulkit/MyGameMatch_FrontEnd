@@ -12,16 +12,16 @@ $(document).ready(function()
 
         if (database["users"][uname]["Soccer"]) {
             favSports.push("Soccer");
-        } 
+        }
         if (database["users"][uname]["Basketball"]){
             favSports.push("Basketball");
-        } 
+        }
         if (database["users"][uname]["Football"]){
             favSports.push("Football");
-        } 
+        }
         if (database["users"][uname]["Baseball"]){
             favSports.push("Baseball");
-        } 
+        }
         if (database["users"][uname]["Ice Hockey"]){
             favSports.push("Ice Hockey");
         }
@@ -163,42 +163,66 @@ $("#logout").on("click", function(){
     window.location.assign("index.html");
 });
 
+var uname = localStorage.getItem("currentUser");
 function addEventToDatabase(id, title){
     console.log(id);
 
-    var uname = localStorage.getItem("currentUser");
+    var attended = false;
+    var userAgenda = database.users[uname].events;
 
-    var result = confirm("Attend " + title + "?");
-    if (result == true){
-        var attended = false;
-        var userAgenda = database["users"][uname]["events"];
-        for (att in userAgenda) {
-            if (id == userAgenda[att]){
-              attended = true;
-              break;
-            }
-        }
-
-        if (!attended){
-            database["users"][uname]["events"].push(id);
-            localStorage.setItem("database", JSON.stringify(database));
-            alert("Event " + title + " added with success!");
-        } 
-        else
-        {
-        alert("You are already attending this event!");
+    for (att in userAgenda) {
+      var split = userAgenda[att].split("&");
+        if (id == split[0]){
+          attended = true;
+          break;
         }
     }
-    
+
+    if (attended){
+        alert("You are already attending this event!");
+        return;
+    }
+
+    $("#modalTitle").text(function(i, oldText){
+      return "Choose priority of this event";
+    });
+    $("#optionId").text(function(i, oldText){
+      return id;
+    });
+    $("#optionTitle").text(function(i, oldText){
+      return title;
+    });
+    $("#myModal").modal();
+
+    $("#btnSaveModal").one( "click",function(){
+      var valueLevel;
+      var radios = $('input[name=gender]');
+      for (var i = 0, length = radios.length; i < length; i++){
+       if (radios[i].checked){
+        valueLevel = radios[i].value;
+        radios[i].checked = false;
+        console.log(valueLevel);
+        break;
+       }
+      }
+
+      if (!valueLevel){
+        alert("Please, choose an option!");
+        return;
+      }else{
+        var optionId = $("#optionId").text();
+        var optionTitle = $("#optionTitle").text();
+        var idAndLevel = optionId + "&" + valueLevel;
+        console.log(idAndLevel);
+        //database["users"][uname]["events"].push(id);
+        database.users[uname].events.push(idAndLevel);
+        localStorage.setItem("database", JSON.stringify(database));
+        alert("Event " + optionTitle + " added with success!");
+        //$('#myModal').modal('hide');
+        $('.btn-secondary').click();
+        return;
+      }
+    });
+
+
 }
-
-
-
-
-
-
-
-
-
-
-

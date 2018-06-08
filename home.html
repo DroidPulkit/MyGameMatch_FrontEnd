@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="css/responsive.css">
 <link rel="shortcut icon" href="images/favicon2.png" type="image/x-icon">
 <link rel="icon" href="images/favicon2.png" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="css/poupupAddEvents.css">
 </head>
 <body>
 
@@ -60,16 +61,16 @@
 			</ul>
 		</nav>
 	</div>
-	
+
 	<!-- Home -->
 
 	<div class="home">
-		
+
 		<!-- Home Slider -->
 
 		<div class="home_slider_container">
 			<div class="owl-carousel owl-theme home_slider">
-				
+
 				<!-- Slider Item -->
 				<div class="owl-item">
 					<div class="home_slider_background" style="background-image:url(images/home_slider.jpg)"></div>
@@ -127,7 +128,7 @@
 										</div>
 										<div class="home_slider_item_link">
 											<div class="trans_200">Addidas
-												
+
 											</div>
 										</div>
 									</div>
@@ -162,7 +163,7 @@
 
 		</div>
 	</div>
-	
+
 	<!-- Page Content -->
 
 	<div class="page_content">
@@ -216,14 +217,42 @@
 					</div>
 				</div>
 
-				<!-- Sidebar -->
+			  <!-- Modal -->
+			  <div class="modal fade" id="myModal" role="dialog">
+			    <div class="modal-dialog">
 
+			      <!-- Modal content-->
+			      <div class="modal-content">
+			        <div class="modal-header">
+								<h1 id="optionId" hidden></h1>
+								<h1 id="optionTitle" hidden></h1>
+								<h5 class="modal-title" id="modalTitle">Modal title</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+			        </div>
+			        <div class="modal-body">
+								<form>
+								  <input type="radio" name="gender" value="1"> High<br>
+								  <input type="radio" name="gender" value="2"> Medium<br>
+								  <input type="radio" name="gender" value="3"> Low
+								</form>
+			        </div>
+							<div class="modal-footer">
+				        <button type="button" class="btn btn-primary" id="btnSaveModal">Save changes</button>
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				      </div>
+			      </div>
+
+			    </div>
+			  </div>
+
+				<!-- Sidebar -->
 				<div class="col-lg-3">
 					<div class="sidebar">
 						<div class="sidebar_background"></div>
 
 						<!-- Future Events -->
-
 						<div class="sidebar_section future_events">
 							<div class="sidebar_title_container">
 								<div class="sidebar_title">Future Events</div>
@@ -233,12 +262,11 @@
 								<!-- Sidebar Slider -->
 								<div class="sidebar_slider_container">
 									<div class="owl-carousel owl-theme sidebar_slider_events" id="addEventToHome">
-
 										<!-- This is how to generate a event in new page -->
 										<!--
 										<div class="owl-item">
 
-											
+
 											<div class="side_post">
 												<a href="post.html">
 													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
@@ -254,7 +282,7 @@
 												</a>
 											</div>
 
-											
+
 											<div class="side_post">
 												<a href="post.html">
 													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
@@ -270,7 +298,7 @@
 												</a>
 											</div>
 
-											
+
 											<div class="side_post">
 												<a href="post.html">
 													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
@@ -286,7 +314,7 @@
 												</a>
 											</div>
 
-											
+
 											<div class="side_post">
 												<a href="post.html">
 													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">

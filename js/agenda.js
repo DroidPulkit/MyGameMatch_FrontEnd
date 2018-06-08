@@ -2,7 +2,7 @@ var dataAgendaJSON = [];
 var dataUsersJSON = [];
 var dataEventsJSON = [];
 var userStorage = window.localStorage.getItem("currentUser");//"pulkit@gmail.com";
-var data = JSON.parse(localStorage.getItem("database")); //DATABASE
+var database = JSON.parse(localStorage.getItem("database")); //DATABASE
 
 $(document).ready(function() {
   $('#calendar-agenda').fullCalendar(funcCalendarAgenda());
@@ -40,20 +40,22 @@ function load(){
     dataUsersJSON = JSON.parse(window.localStorage.getItem("dataUsersJSON"));
   }*/
 
-  dataEventsJSON = data.events;
-  dataUsersJSON = data.users;
+  //dataEventsJSON = database.events;
+  //dataUsersJSON = database.users;
 
-  if (dataUsersJSON){
+  if (database.users){
     var finalData = [];
-    for(var i = 0; i < dataUsersJSON[userStorage].events.length; i++){
-      for (var j = 0; j < dataEventsJSON.length; j++){
-        if (dataUsersJSON[userStorage].events[i] == dataEventsJSON[j].id) {
+    for(var i = 0; i < database.users[userStorage].events.length; i++){
+      for (var j = 0; j < database.events.length; j++){
+        var idAndLevel = database.users[userStorage].events[i].split("&");
+        //if (dataUsersJSON[userStorage].events[i] == dataEventsJSON[j].id) {
+        if (idAndLevel[0] == database.events[j].id) {
           var objCopy = {};
-          for (key in dataEventsJSON[j]) {
-            objCopy[key] = dataEventsJSON[key]; // copies each property to the objCopy object
+          for (key in database.events[j]) {
+            objCopy[key] = database.events[key]; // copies each property to the objCopy object
           }
-          objCopy = dataEventsJSON[j];
-          objCopy['backgroundColor']= "yellow";
+          objCopy = database.events[j];
+          objCopy['level']= idAndLevel[1];
           finalData.push(objCopy) ;
           break;
         }
@@ -86,16 +88,37 @@ function funcCalendarAgenda(){
     eventClick: function(calEvent, jsEvent, view){
       var result=confirm("Not attend " + calEvent.title + " anymore?");
       if (result == true){
-        for (var i = 0; i < dataUsersJSON[userStorage].events.length; i++){
-          if (calEvent.id == dataUsersJSON[userStorage].events[i]){
-            delete dataUsersJSON[userStorage].events[i];
-            dataUsersJSON[userStorage].events = cleanArray(dataUsersJSON[userStorage].events);
+        for (var i = 0; i < database.users[userStorage].events.length; i++){
+          var idAndLevel = database.users[userStorage].events[i].split("&");
+          //if (calEvent.id == dataUsersJSON[userStorage].events[i]){
+          if (calEvent.id == idAndLevel[0]){
+            delete database.users[userStorage].events[i];
+            database.users[userStorage].events = cleanArray(database.users[userStorage].events);
             $('#calendar-agenda').fullCalendar('removeEvents', calEvent._id);
-            dataEventsJSON[calEvent.id-1]['backgroundColor']= "#578cba";
+            //dataEventsJSON[calEvent.id-1]['backgroundColor']= "#578cba";
+            localStorage.setItem("database", JSON.stringify(database));
             break;
           }
         }
       }
+    },
+    eventRender: function(event, element) {
+        if (event.level == '1') {
+            element.css({
+                'background-color': '#333333',
+                'border-color': '#333333'
+            });
+        }else if(event.level == '2'){
+            element.css({
+                'background-color': 'green',
+                'border-color': 'green'
+            });
+        }else if(event.level == '3'){
+            element.css({
+                'background-color': 'brown',
+                'border-color': 'brown'
+            });
+        }
     }
   }
 }
@@ -111,8 +134,8 @@ function cleanArray(actual) {
 }
 
 function refreshJSON(){
-  data.events = (dataEventsJSON);
-  data.users = (dataUsersJSON);
-  window.localStorage.setItem("database", JSON.stringify(data));
+  //database.events = (dataEventsJSON);
+  //database.users = (dataUsersJSON);
+  //window.localStorage.setItem("database", JSON.stringify(database));
 
 }
