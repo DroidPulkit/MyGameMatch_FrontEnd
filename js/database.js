@@ -71,14 +71,14 @@ var database = {
     },
     {
         "id": "2",
-        "title": "Ice Hockey - Women's World Cup, London",
+        "title": "Ice Hockey - Womens World Cup, London",
         "start": "2018-06-21",
         "end": "2018-07-05",
         "sport": "Ice Hockey"
     },
     {
       "id": "3",
-      "title": "Ice Hockey - Men's World Cup, India",
+      "title": "Ice Hockey - Mens World Cup, India",
       "start": "2018-05-28",
       "end": "2018-06-16",
       "sport": "Ice Hockey"
